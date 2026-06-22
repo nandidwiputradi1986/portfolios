@@ -1,0 +1,39 @@
+create ai prompt to make modernize animated portfolio spa but should be native so it can attached to any framework
+the data should be come from json.js
+the skills on left side, the experiences on right side
+the experience responsibilies can accordeon
+each of skill can be selected, and will highlight matched skills on experience
+
+You are an expert Frontend Engineer. Create a modern, animated Single Page Application (SPA) Portfolio Component using native Web Components (Custom Elements) so it remains framework-agnostic and can be easily attached to any framework (React, Vue, Svelte, or vanilla HTML).
+
+### Core Architecture & Tech Stack
+- **Technology:** Native Web Components (`HTMLElement`), Shadow DOM (for style encapsulation), and standard ES6+ JavaScript.
+- **Styling:** Modern CSS custom properties (variables), Flexbox/Grid, and CSS transitions/animations. (Do not use external CSS frameworks like Tailwind unless via a CDN injected into the Shadow DOM, but pure CSS is preferred for native portability).
+- **Interactivity:** Native DOM event listeners and reactive state management inside the component class.
+
+### Layout & Visual Design
+- **Structure:** A split-screen or dual-column layout.
+  - **Left Column (Skills):** A grid or list of skill badges/cards.
+  - **Right Column (Experiences):** A vertical timeline or list of job experiences.
+- **Aesthetics:** Sleek, dark-mode modern aesthetic (e.g., deep slate background, vibrant accent colors like neon purple, cyan, or emerald for highlights, subtle glassmorphism effects using `backdrop-filter`).
+
+### Specific Features & Interactivity
+1. **Accordion Responsibilities:** 
+   - Each experience card should display the Job Title, Company, and Dates.
+   - The detailed responsibilities/bullet points must be hidden inside an animated accordion that expands smoothly when clicked.
+
+2. **Skill-to-Experience Cross-Highlighting:**
+   - Each skill badge on the left must have a unique identifier.
+   - Each experience on the right must be tagged with data attributes indicating the skills used (e.g., `data-skills="javascript,react"`).
+   - **Interaction:** Clicking a skill badge toggles its "selected" state. When selected, the skill badge gets a vibrant active style, and all experience cards on the right that match that skill are visually highlighted (e.g., scaled slightly, border glow, or non-matching cards fade out to 30% opacity). Clicking the skill again clears the filter.
+
+3. **Animations:** 
+   - Smooth CSS transitions for the accordion expand/collapse (`max-height` or grid-row interpolation).
+   - Smooth fading/scaling transitions for the experience highlighting effect.
+   - Staggered fade-in animation for the entire component on initial load.
+
+### Technical Requirements for the Code Output
+- Provide the complete code in a single, self-contained JavaScript file defining a custom element (e.g., `customElements.define('portfolio-spa', PortfolioSPA);`).
+- The component should accept data from an external 'json.js' file (which exports a valid JSON object or array) so the component can populate itself dynamically via attributes or a `data` setter.
+- Ensure all styles are scoped inside the `constructor` using an inner `<style>` tag attached to the Shadow DOM.
+- Provide a brief HTML snippet showing how to include and use `<portfolio-spa></portfolio-spa>` in a standard HTML file.

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nandi Dwi Putradi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0b0f19;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Target standard elements instead of the web component body root */
+    .view-container {
+      position: relative;
+      z-index: 3;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* Dashboard view style mapping wrapper */
+    #dashboardContainer {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      color: #ffffff;
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+
+    .dashboard-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+<canvas id="particle-canvas"></canvas>
+
+  <portfolio-header></portfolio-header>
+
+  <div class="view-container">
+    <portfolio-spa id="portfolioApp" style="padding-top:20px;padding-bottom:20px;"></portfolio-spa>
+    
+    <div id="dashboardContainer" class="hidden">
+      <h2>Analytics Dashboard</h2>
+      <div class="dashboard-card">
+        <p>Welcome to the system workspace architecture. Metrics visualization panels go here.</p>
+      </div>
+    </div>
+  </div>
+
+  <portfolio-footer id="portfolioFooter"></portfolio-footer>
+
+  <script src="./header.js"></script>
+  <script src="./footer.js"></script>
+  <script src="./portfolio-spa.js"></script>
+  <script src="./json.js"></script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const app = document.getElementById('portfolioApp');
+      const footer = document.getElementById('portfolioFooter');
+      const dashboardContainer = document.getElementById('dashboardContainer');
+      
+      if (typeof portfolioData !== 'undefined') {
+        if (app) app.data = portfolioData;
+        if (footer) footer.data = portfolioData;
+      }
+
+      // Router state routing logic engine switch
+      window.addEventListener('view-change', (e) => {
+        if (e.detail.view === 'dashboard') {
+          app.classList.add('hidden');
+          dashboardContainer.classList.remove('hidden');
+        } else if (e.detail.view === 'portfolio') {
+          dashboardContainer.classList.add('hidden');
+          app.classList.remove('hidden');
+        }
+      });
+
+      // Smooth scrolling interface handling implementation
+      window.addEventListener('scroll-to-footer', () => {
+        footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+  <script src="./particles.js"></script>        
+</body>
+</html>
